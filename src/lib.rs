@@ -48,8 +48,6 @@ impl From<IrcMessage> for Event {
             match cmd {
                 Command::PrivMsg => event.event_type = EventType::Message,
                 Command::UserNotice => {
-                    event.event_type = EventType::Sub;
-                    
                     match &tags["msg-id"] {
                         id if id == &"raid".to_string() => event.event_type = EventType::Raid,
                         id if id == &"resub".to_string() => event.event_type = EventType::Resub,
